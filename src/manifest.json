@@ -1,0 +1,33 @@
+{
+  "manifest_version": 3,
+  "name": "Rapido",
+  "version": "1.0.0",
+  "description": "AI-gestuurde spraak-naar-tekst assistent voor zorgrapportages",
+  "permissions": [
+    "storage",
+    "activeTab"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "background": {
+    "service_worker": "background/service_worker.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["shared/storage.js", "shared/messaging.js", "shared/dom.js", "content/ui.js", "content/content.js"],
+      "css": [],
+      "run_at": "document_idle"
+    }
+  ],
+  "options_ui": {
+    "page": "options/options.html",
+    "open_in_tab": true
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  }
+}

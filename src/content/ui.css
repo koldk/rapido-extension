@@ -1,0 +1,445 @@
+/* ============================================
+   Rapido - Shadow DOM Styles
+   Isolated from host page CSS
+   ============================================ */
+
+:host {
+  all: initial;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #1e293b;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ---- FAB ---- */
+.ecd-fab {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #2563eb;
+  color: white;
+  border: none;
+  cursor: pointer;
+  z-index: 2147483647;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  transition: background 0.15s ease, transform 0.15s ease;
+  user-select: none;
+  touch-action: none;
+}
+
+.ecd-fab:hover {
+  background: #1d4ed8;
+  transform: scale(1.05);
+}
+
+.ecd-fab:active {
+  transform: scale(0.97);
+}
+
+.ecd-fab.dragging {
+  cursor: grabbing;
+  transition: none;
+  transform: none;
+  opacity: 0.9;
+}
+
+.ecd-fab svg {
+  width: 28px;
+  height: 28px;
+  fill: currentColor;
+  pointer-events: none;
+}
+
+/* ---- Panel ---- */
+.ecd-panel {
+  position: fixed;
+  width: 380px;
+  max-height: 540px;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.18);
+  z-index: 2147483646;
+  display: none;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid #e2e8f0;
+}
+
+.ecd-panel.open {
+  display: flex;
+}
+
+/* Panel Header */
+.ecd-panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  background: #2563eb;
+  color: white;
+}
+
+.ecd-panel-header h2 {
+  font-size: 15px;
+  font-weight: 600;
+  margin: 0;
+}
+
+/* Header actions */
+.ecd-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.ecd-layout-btn {
+  background: none;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: rgba(255, 255, 255, 0.6);
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  transition: all 0.15s ease;
+}
+
+.ecd-layout-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+  color: white;
+}
+
+.ecd-layout-btn.active {
+  background: rgba(255, 255, 255, 0.25);
+  color: white;
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+.ecd-layout-btn svg {
+  width: 16px;
+  height: 16px;
+  stroke: currentColor;
+  fill: none;
+}
+
+.ecd-close-btn {
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  margin-left: 6px;
+}
+
+.ecd-close-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.ecd-close-btn svg {
+  width: 18px;
+  height: 18px;
+  fill: currentColor;
+}
+
+/* Panel Body */
+.ecd-panel-body {
+  padding: 16px;
+  overflow-y: auto;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Section labels */
+.ecd-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 4px;
+}
+
+/* Preset dropdown */
+.ecd-select {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  font-size: 14px;
+  background: #f8fafc;
+  color: #1e293b;
+  cursor: pointer;
+  outline: none;
+}
+
+.ecd-select:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.15);
+}
+
+/* Record section */
+.ecd-record-section {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.ecd-btn {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: background 0.15s ease;
+}
+
+.ecd-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.ecd-btn-primary {
+  background: #2563eb;
+  color: white;
+}
+
+.ecd-btn-primary:hover:not(:disabled) {
+  background: #1d4ed8;
+}
+
+.ecd-btn-danger {
+  background: #dc2626;
+  color: white;
+}
+
+.ecd-btn-danger:hover:not(:disabled) {
+  background: #b91c1c;
+}
+
+.ecd-btn-secondary {
+  background: #f1f5f9;
+  color: #334155;
+  border: 1px solid #cbd5e1;
+}
+
+.ecd-btn-secondary:hover:not(:disabled) {
+  background: #e2e8f0;
+}
+
+.ecd-btn-success {
+  background: #16a34a;
+  color: white;
+}
+
+.ecd-btn-success:hover:not(:disabled) {
+  background: #15803d;
+}
+
+.ecd-btn svg {
+  width: 16px;
+  height: 16px;
+  fill: currentColor;
+  pointer-events: none;
+}
+
+/* Timer */
+.ecd-timer {
+  font-size: 14px;
+  font-weight: 600;
+  color: #dc2626;
+  font-variant-numeric: tabular-nums;
+  min-width: 48px;
+}
+
+/* Recording indicator */
+.ecd-recording-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #dc2626;
+  animation: ecd-pulse 1s ease-in-out infinite;
+  flex-shrink: 0;
+}
+
+@keyframes ecd-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+/* Textarea */
+.ecd-textarea {
+  width: 100%;
+  min-height: 80px;
+  max-height: 140px;
+  padding: 10px 12px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  font-size: 13px;
+  font-family: inherit;
+  resize: vertical;
+  outline: none;
+  color: #1e293b;
+  background: #ffffff;
+  line-height: 1.5;
+}
+
+.ecd-textarea:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.15);
+}
+
+.ecd-textarea.readonly {
+  background: #f8fafc;
+  color: #475569;
+  resize: none;
+  cursor: default;
+}
+
+/* Button row */
+.ecd-btn-row {
+  display: flex;
+  gap: 8px;
+}
+
+.ecd-btn-row .ecd-btn {
+  flex: 1;
+}
+
+/* Status bar */
+.ecd-status {
+  font-size: 12px;
+  padding: 8px 12px;
+  border-radius: 6px;
+  display: none;
+}
+
+.ecd-status.visible {
+  display: block;
+}
+
+.ecd-status.info {
+  background: #eff6ff;
+  color: #1e40af;
+}
+
+.ecd-status.error {
+  background: #fef2f2;
+  color: #991b1b;
+}
+
+.ecd-status.success {
+  background: #f0fdf4;
+  color: #166534;
+}
+
+/* Spinner */
+.ecd-spinner {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border: 2px solid currentColor;
+  border-right-color: transparent;
+  border-radius: 50%;
+  animation: ecd-spin 0.6s linear infinite;
+  vertical-align: middle;
+  margin-right: 6px;
+}
+
+@keyframes ecd-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Crosshair overlay */
+.ecd-crosshair-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2147483645;
+  cursor: crosshair;
+  display: none;
+}
+
+.ecd-crosshair-overlay.active {
+  display: block;
+}
+
+/* Target info & paste row */
+.ecd-target-info {
+  font-size: 11px;
+  color: #64748b;
+  font-style: italic;
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ecd-paste-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 6px;
+}
+
+/* Section divider */
+.ecd-divider {
+  height: 1px;
+  background: #e2e8f0;
+  margin: 4px 0;
+}
+
+/* Settings link */
+.ecd-settings-link {
+  font-size: 12px;
+  color: #2563eb;
+  text-decoration: underline;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+  font-family: inherit;
+}
+
+.ecd-settings-link:hover {
+  color: #1d4ed8;
+}
+
+/* ---- Wide layout ---- */
+.ecd-panel.wide {
+  width: 620px;
+  max-height: 420px;
+}
+
+.ecd-panel.wide .ecd-panel-body {
+  gap: 10px;
+  padding: 12px 16px;
+}
+
+.ecd-panel.wide .ecd-textarea {
+  min-height: 60px;
+  max-height: 100px;
+}

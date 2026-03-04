@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <title>Rapido - Instellingen</title>
+  <link rel="stylesheet" href="options.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Rapido - Instellingen</h1>
+
+    <section class="section">
+      <h2>API Configuratie</h2>
+
+      <div class="field">
+        <label for="apiKey">OpenAI API Key</label>
+        <input type="password" id="apiKey" placeholder="sk-..." autocomplete="off">
+        <small>Je API key wordt lokaal opgeslagen en nooit gedeeld.</small>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Speech-to-Text (STT)</h2>
+
+      <div class="field">
+        <label for="sttProvider">Provider</label>
+        <select id="sttProvider">
+          <option value="openai">OpenAI (Whisper)</option>
+          <option value="custom">Custom endpoint</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label for="sttModel">STT Model</label>
+        <input type="text" id="sttModel" placeholder="whisper-1">
+        <small>OpenAI model naam voor speech-to-text.</small>
+      </div>
+
+      <div class="field custom-stt-field" style="display:none">
+        <label for="customSttUrl">Custom STT Endpoint URL</label>
+        <input type="url" id="customSttUrl" placeholder="https://jouw-server.nl/api">
+        <small>POST {url}/transcribe (multipart file upload)</small>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Tekstgeneratie (LLM)</h2>
+
+      <div class="field">
+        <label for="llmProvider">Provider</label>
+        <select id="llmProvider">
+          <option value="openai">OpenAI</option>
+          <option value="custom">Custom endpoint</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label for="llmModel">LLM Model</label>
+        <input type="text" id="llmModel" placeholder="gpt-4o-mini">
+        <small>OpenAI model naam voor tekstgeneratie.</small>
+      </div>
+
+      <div class="field custom-llm-field" style="display:none">
+        <label for="customLlmUrl">Custom LLM Endpoint URL</label>
+        <input type="url" id="customLlmUrl" placeholder="https://jouw-server.nl/api">
+        <small>POST {url}/generate (JSON body)</small>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Schrijfstijl</h2>
+
+      <div class="field">
+        <label for="writingStyle">Rapportage stijl</label>
+        <select id="writingStyle">
+          <option value="professional">Professioneel & volledig (aanbevolen)</option>
+          <option value="literal">Letterlijk & compact</option>
+        </select>
+        <small>Professioneel: maakt volwaardige zinnen, vult geen feiten aan. Letterlijk: blijft dicht bij originele tekst.</small>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Taal</h2>
+
+      <div class="field">
+        <label for="sttLanguage">Transcriptie taal (spraak-naar-tekst)</label>
+        <select id="sttLanguage">
+          <option value="nl">Nederlands</option>
+          <option value="en">Engels</option>
+          <option value="tr">Turks</option>
+          <option value="ar">Arabisch</option>
+          <option value="pap">Papiaments</option>
+        </select>
+        <small>De taal die wordt ingesproken bij de opname.</small>
+      </div>
+
+      <div class="field">
+        <label for="outputLanguage">Rapportage taal (output)</label>
+        <select id="outputLanguage">
+          <option value="nl">Nederlands</option>
+          <option value="en">Engels</option>
+          <option value="tr">Turks</option>
+          <option value="ar">Arabisch</option>
+          <option value="pap">Papiaments</option>
+        </select>
+        <small>De taal waarin de gegenereerde rapportage wordt geschreven.</small>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Preset Blueprints</h2>
+      <small class="section-desc">Pas de instructies per rapportagetype aan. De AI gebruikt deze beschrijving om de rapportage te schrijven.</small>
+
+      <div class="field">
+        <label for="blueprintDagrapportage">Dagrapportage</label>
+        <textarea id="blueprintDagrapportage" rows="3" placeholder="Beschrijving voor dagrapportage..."></textarea>
+      </div>
+
+      <div class="field">
+        <label for="blueprintContactmoment">Contactmoment</label>
+        <textarea id="blueprintContactmoment" rows="3" placeholder="Beschrijving voor contactmoment..."></textarea>
+      </div>
+
+      <div class="field">
+        <label for="blueprintEvaluatie">Evaluatie</label>
+        <textarea id="blueprintEvaluatie" rows="3" placeholder="Beschrijving voor evaluatie..."></textarea>
+      </div>
+
+      <div class="field">
+        <button id="resetBlueprintsBtn" class="btn-secondary" type="button">Terug naar fabrieksinstellingen</button>
+        <span id="resetStatus" class="reset-status"></span>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Privacy & Logging</h2>
+
+      <div class="field checkbox-field">
+        <label>
+          <input type="checkbox" id="loggingEnabled">
+          Debug logging inschakelen
+        </label>
+        <small>Standaard uitgeschakeld. API keys worden nooit gelogd.</small>
+      </div>
+    </section>
+
+    <div class="actions">
+      <button id="saveBtn" class="btn-primary">Opslaan</button>
+      <span id="saveStatus" class="save-status"></span>
+    </div>
+  </div>
+
+  <script src="../shared/storage.js"></script>
+  <script src="options.js"></script>
+</body>
+</html>
