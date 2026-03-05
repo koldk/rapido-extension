@@ -44,7 +44,8 @@ const RapidoUI = (() => {
     send: `<svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>`,
     target: `<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="6" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="2"/></svg>`,
     paste: `<svg viewBox="0 0 24 24"><path d="M19 2h-4.18C14.4.84 13.3 0 12 0c-1.3 0-2.4.84-2.82 2H5c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-7 0c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm7 18H5V4h2v3h10V4h2v16z"/></svg>`,
-    logo: `<svg viewBox="0 0 24 24"><path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z"/><path d="M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z"/></svg>`,
+    logo: `<img class="ecd-logo-img" alt="Rapido">`,
+    fabLogo: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><line x1="12" y1="7" x2="12" y2="12"/><line x1="12" y1="12" x2="15.5" y2="14.5"/><line x1="1" y1="6" x2="4" y2="8"/><line x1="0.5" y1="10.5" x2="3.5" y2="11.5"/><line x1="1" y1="18" x2="4" y2="16"/></svg>`,
     layoutCompact: `<svg viewBox="0 0 24 24"><rect x="7" y="3" width="10" height="18" rx="2" fill="none" stroke="currentColor" stroke-width="2"/></svg>`,
     layoutWide: `<svg viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="2"/></svg>`,
     settings: `<svg viewBox="0 0 24 24"><path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58a.49.49 0 00.12-.61l-1.92-3.32a.49.49 0 00-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54a.484.484 0 00-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96a.49.49 0 00-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.07.62-.07.94s.02.64.07.94l-2.03 1.58a.49.49 0 00-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6A3.6 3.6 0 1115.6 12 3.6 3.6 0 0112 15.6z"/></svg>`
@@ -85,9 +86,10 @@ const RapidoUI = (() => {
     return `/* Inline CSS - see ui.css for source */
 :host{all:initial;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;font-size:14px;line-height:1.5;color:#1e293b}*{box-sizing:border-box;margin:0;padding:0}
 .ecd-fab{position:fixed;bottom:24px;right:24px;width:56px;height:56px;border-radius:50%;background:#2563eb;color:#fff;border:none;cursor:pointer;z-index:2147483647;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 12px rgba(0,0,0,.25);transition:background .15s ease,transform .15s ease;user-select:none;touch-action:none}
-.ecd-fab:hover{background:#1d4ed8;transform:scale(1.05)}.ecd-fab:active{transform:scale(.97)}.ecd-fab.dragging{cursor:grabbing;transition:none;transform:none;opacity:.9}.ecd-fab svg{width:28px;height:28px;fill:currentColor;pointer-events:none}
+.ecd-fab:hover{background:#1d4ed8;transform:scale(1.05)}.ecd-fab:active{transform:scale(.97)}.ecd-fab.dragging{cursor:grabbing;transition:none;transform:none;opacity:.9}.ecd-fab svg{width:28px;height:28px;stroke:currentColor;fill:none;pointer-events:none}
 .ecd-panel{position:fixed;width:380px;max-height:540px;background:#fff;border-radius:12px;box-shadow:0 8px 30px rgba(0,0,0,.18);z-index:2147483646;display:none;flex-direction:column;overflow:hidden;border:1px solid #e2e8f0}.ecd-panel.open{display:flex}
-.ecd-panel-header{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;background:#2563eb;color:#fff}.ecd-panel-header h2{font-size:15px;font-weight:600;margin:0}
+.ecd-panel-header{display:flex;align-items:center;justify-content:space-between;padding:10px 16px;background:#2563eb;color:#fff}
+.ecd-header-logo{display:flex;align-items:center}.ecd-header-logo img{height:22px;width:auto}
 .ecd-header-actions{display:flex;align-items:center;gap:2px}
 .ecd-layout-btn{background:0 0;border:1px solid rgba(255,255,255,.3);color:rgba(255,255,255,.6);cursor:pointer;padding:4px;border-radius:4px;display:flex;align-items:center;transition:all .15s ease}.ecd-layout-btn:hover{background:rgba(255,255,255,.15);color:#fff}.ecd-layout-btn.active{background:rgba(255,255,255,.25);color:#fff;border-color:rgba(255,255,255,.5)}.ecd-layout-btn svg{width:16px;height:16px;stroke:currentColor;fill:none}
 .ecd-header-btn{background:0 0;border:1px solid rgba(255,255,255,.3);color:rgba(255,255,255,.6);cursor:pointer;padding:4px;border-radius:4px;display:flex;align-items:center;transition:all .15s ease}.ecd-header-btn:hover{background:rgba(255,255,255,.15);color:#fff}.ecd-header-btn svg{width:16px;height:16px;fill:currentColor}
@@ -122,7 +124,7 @@ const RapidoUI = (() => {
   function createFAB() {
     fab = document.createElement('button');
     fab.className = 'ecd-fab';
-    fab.innerHTML = ICONS.logo;
+    fab.innerHTML = ICONS.fabLogo;
     fab.title = 'Rapido';
 
     fab.addEventListener('mousedown', onFabMouseDown);
@@ -288,7 +290,7 @@ const RapidoUI = (() => {
 
     panel.innerHTML = `
       <div class="ecd-panel-header">
-        <h2>Rapido</h2>
+        <span class="ecd-header-logo">${ICONS.logo}</span>
         <div class="ecd-header-actions">
           <button class="ecd-layout-btn active" id="ecd-layout-compact" title="Compact">${ICONS.layoutCompact}</button>
           <button class="ecd-layout-btn" id="ecd-layout-wide" title="Breed">${ICONS.layoutWide}</button>
@@ -354,6 +356,10 @@ const RapidoUI = (() => {
         </div>
       </div>
     `;
+
+    // Set logo src dynamically (chrome.runtime.getURL works in content scripts)
+    const logoImg = panel.querySelector('.ecd-logo-img');
+    if (logoImg) logoImg.src = chrome.runtime.getURL('logo/logo-header.png');
 
     // Event listeners
     panel.querySelector('.ecd-close-btn').addEventListener('click', () => togglePanel(false));
